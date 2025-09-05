@@ -246,6 +246,7 @@ extern char bar_y_expr[32];
 extern char bar_width_expr[32];
 extern bool bar_bidirectional;
 extern bool bar_reversed;
+extern bool bar_cava_style;
 
 static cairo_font_face_t *font_faces[6] = {
     NULL,
