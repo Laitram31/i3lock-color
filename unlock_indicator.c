@@ -730,13 +730,17 @@ static void draw_elements(cairo_t *const ctx, DrawData const *const draw_data) {
             // maybe see about doing ((double) rand() / RAND_MAX) * bar_count
             int index = rand() % bar_count;
             bar_heights[index] = max_bar_height;
+            int tmp_height = max_bar_height;
             for (int i = 0; i < ((max_bar_height / bar_step) + 1); ++i) {
                 int low_ind = index - i;
                 while (low_ind < 0) {
                     low_ind += bar_count;
                 }
                 int high_ind = (index + i) % bar_count;
-                int tmp_height = max_bar_height - (bar_step * i);
+                if (bar_cava_style)
+                    tmp_height = ((double)max_bar_height) * exp(-(0.5 * i));
+                else
+                    tmp_height = max_bar_height - (bar_step * i);
                 if (tmp_height < 0)
                     tmp_height = 0;
                 if (bar_heights[low_ind] < tmp_height)
