@@ -237,6 +237,7 @@ extern double bar_base_height;
 extern double bar_periodic_step;
 extern double max_bar_height;
 extern double bar_position;
+extern double bar_cava_decay;
 extern int bar_count;
 extern int bar_orientation;
 
@@ -738,7 +739,7 @@ static void draw_elements(cairo_t *const ctx, DrawData const *const draw_data) {
                 }
                 int high_ind = (index + i) % bar_count;
                 if (bar_cava_style)
-                    tmp_height = ((double)max_bar_height) * exp(-(0.5 * i));
+                    tmp_height = ((double)max_bar_height) * exp(-(bar_cava_decay * i));
                 else
                     tmp_height = max_bar_height - (bar_step * i);
                 if (tmp_height < 0)

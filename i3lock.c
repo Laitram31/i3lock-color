@@ -313,6 +313,7 @@ double bar_step = 15;
 double bar_base_height = 25;
 double bar_periodic_step = 15;
 double max_bar_height = 25;
+double bar_cava_decay = 0.5;
 int bar_count = 10;
 int bar_orientation = BAR_FLAT;
 
@@ -1909,6 +1910,7 @@ int main(int argc, char *argv[]) {
         {"bar-count", required_argument, NULL, 710},
         {"bar-total-width", required_argument, NULL, 711},
         {"bar-cava-style", no_argument, NULL, 712},
+        {"bar-cava-decay", required_argument, NULL, 713},
 
         // misc.
         {"redraw-thread", no_argument, NULL, 900},
@@ -2575,6 +2577,11 @@ int main(int argc, char *argv[]) {
                 break;
             case 712:
                 bar_cava_style = true;
+                break;
+            case 713:
+                bar_cava_decay = strtod(optarg, NULL);
+                if (!bar_cava_decay)
+                    bar_cava_decay = 0.5;
                 break;
 
 			// Misc
